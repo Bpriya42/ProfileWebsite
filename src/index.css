@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #f3f4f6, #e2e8f0);
+  font-family: 'Montserrat', sans-serif; /* Set Montserrat as the default font */
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+  font-family: 'Montserrat', sans-serif; /* Apply Montserrat to all headings */
+}
+
+#home {
+  /* background: url('https://www.vt.edu/content/dam/vt_edu/admissions/download/swag/2021/computer-bg/Laptop_WP2.png') no-repeat center center; */
+  background: url('https://www.thoughtco.com/thmb/wePUa_lYxMgswpUCpHUsRN6sAl8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/amherst-university-campus-641618920-5aae80211f4e1300379be8f5.jpg') no-repeat center center;
+  background-size: cover; /* Ensures the image covers the section */
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 500px; /* Set a reasonable height for the section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px #000;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  #home {
+    background-position: center top;
+    min-height: 300px; /* Adjust the height for smaller screens */
+  }
+}
+
+#aboutme {
+  background: #f9f9f9;
+  padding: 40px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 20px;
+  max-width: fit-content;
+}
+
+#skills {
+  padding: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.skill-card {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  width: 150px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+
+/* Skills Section */
+.skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.first-row .skill {
+  margin: 0 10px; /* Adjust spacing as needed */
+}
+
+.second-row {
+  gap: 30px; /* Adjust this for symmetry */
+}
+
+.skill {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+}
+
+.skill img {
+  width: 40px;
+  height: 40px;
+}
+
+.skill:hover {
+  transform: scale(1.5); /* Adjust as needed */
+}
+
+.skill::after {
+  content: attr(data-skill);
+  position: absolute;
+  bottom: -20px;
+  background-color: #fff;
+  padding: 2px 5px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.skill:hover::after {
+  opacity: 1;
+}
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+.about-me-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #f7f9fc; /* Light background color */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    max-width: 1000px; /* Adjust based on your layout */
+    margin: 30px auto; /* Center the container horizontally */
+  }
+  
+  .about-me-container:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+  }
+  
+  .profile-picture-container {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 20px; /* Space between the picture and content */
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  
+  .profile-picture-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05); /* Slight scaling effect on hover */
+  }
+  
+  .profile-picture {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .about-me-content {
+    flex: 1; /* Ensure content takes up remaining space */
+  }
+  
+  .about-me-title {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .about-me-text {
+    line-height: 1.6;
+    color: #555;
+    font-size: 16px;
+  }
+  
