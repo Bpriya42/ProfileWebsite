@@ -35,9 +35,9 @@ const Hero = () => {
             className="text-center md:text-left"
           >
             <h1 className="font-bebas text-6xl md:text-7xl lg:text-8xl mb-4">
-              <span className="text-primary">Director</span> of
+              <span className="text-primary">Hi!</span>
               <br />
-              Web Development
+              I'm Priya
             </h1>
             
             <div className="space-y-2 mb-8">
