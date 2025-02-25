@@ -18,6 +18,20 @@ const projects = [
     ]
   },
   {
+    title: 'Stock Price Prediction with Parallel Processing',
+    description: 'Implemented a stock price prediction model using PySpark MLlib with parallel processing for efficiency optimization.',
+    longDescription: 'My primary contribution was building the **machine learning model using PySpark MLlib** and optimizing it for efficiency. Additionally, I **conducted a comparative analysis of model runtime during both training and testing phases**, evaluating performance with and without parallel processing. This analysis provided insights into the computational advantages of distributed processing in large-scale stock price prediction.',
+    image: 'src/components/stock_prediction.jpg',
+    tags: ['PySpark', 'SQL', 'MLlib', 'Parallel Computing', 'Big Data'],
+    github: 'https://github.com/ajc-617/532finalproject/tree/main',
+    features: [
+      'Data collection from Kaggle and preprocessing with PySpark',
+      'Parallel data processing across multiple cores',
+      'Stock price prediction using PySpark MLlib',
+      'Runtime performance analysis for parallel vs sequential processing'
+    ]
+  },
+  {
     title: 'Indoor Air Quality Indicator with Mechanical Plant Avatar',
     description: 'Developed a machine learning-based air quality classifier with real-time IoT data streaming.',
     longDescription: 'Directed firmware development for an indoor air quality monitoring system using environmental sensors and BLE-based real-time IoT data streaming. Built a machine learning classifier achieving 80% accuracy in air quality condition classification.',
