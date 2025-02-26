@@ -84,7 +84,7 @@ const Hero = () => {
           >
             <div className="aspect-square rounded-full overflow-hidden border-4 border-primary shadow-2xl">
               <img
-                src="src/components/Profile_pic.jpg"
+                src="./src/components/Profile_pic.jpg"
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
