@@ -8,7 +8,7 @@ const experiences = [
     title: 'Graduate Full-stack Software Developer',
     company: 'Deloitte Digital',
     period: 'Jul 2023 - May 2024',
-    logo: 'src/components/deloitte_logo.png',
+    logo: './src/components/deloitte_logo.png',
     description: "Designed and implemented secure authentication systems, data migration solutions, and employee dashboards using Auth0, ASP.NET, and React.js, enhancing security, efficiency, and user experience for Australia's largest foreign exchange provider.",
     achievements: [
       <p><strong>Enhanced Security & User Authentication</strong> – Integrated <strong>Auth0 identity management</strong> and <strong>Multi-Factor Authentication (MFA)</strong>, securing access for <strong>100,000+ users</strong> and reducing authentication-related support issues by <strong>~70%</strong>.</p>,
@@ -31,7 +31,7 @@ const experiences = [
     title: 'Summer Intern - Backend Software Developer',
     company: 'Deloitte Digital',
     period: 'Aug 2021 – Dec 2021',
-    logo: 'src/components/deloitte_logo.png',
+    logo: './src/components/deloitte_logo.png',
     description: 'Developed backend APIs and multi-currency payment features for Travel Money Oz using ASP.NET and C#, enhancing transaction efficiency, accuracy, and user satisfaction.',
     achievements: [
       <p><strong>Engineered Multi-Currency Payment System</strong> – Developed a <strong>multi-currency payment feature</strong> using <strong>ASP.NET and C#</strong>, enabling users to seamlessly add multiple currencies to travel cards, improving transaction efficiency by <strong>25%</strong> and enhancing customer satisfaction.</p>,
