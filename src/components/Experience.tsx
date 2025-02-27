@@ -8,7 +8,7 @@ const experiences = [
     title: 'Master of Science - Computer Science',
     company: 'University of Massachusetts, Amherst, MA',
     period: 'Aug 2024 - May 2026',
-    logo: './src/components/media/umass_logo.png',
+    logo: 'media/umass_logo.png',
     description: (
       <p>
         <strong>Relevant Courses:</strong> Statistics, Neural Networks, Systems for Data Science, Natural Language Processing, Computer Vision, Software Engineering, Optimization in Machine Learning.
@@ -22,7 +22,7 @@ const experiences = [
     title: 'Graduate Full-stack Software Developer',
     company: 'Deloitte Digital, Brisbane, Australia',
     period: 'Jul 2023 - May 2024',
-    logo: './src/components/media/deloitte_logo.png',
+    logo: 'media/deloitte_logo.png',
     description: "Designed and implemented secure authentication systems, data migration solutions, and employee dashboards using Auth0, ASP.NET, and React.js, enhancing security, efficiency, and user experience for Australia's largest foreign exchange provider.",
     achievements: [
       <p><strong>Enhanced Security & User Authentication</strong> – Integrated <strong>Auth0 identity management</strong> and <strong>Multi-Factor Authentication (MFA)</strong>, securing access for <strong>100,000+ users</strong> and reducing authentication-related support issues by <strong>~70%</strong>.</p>,
