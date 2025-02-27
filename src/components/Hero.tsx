@@ -66,7 +66,7 @@ const Hero = () => {
                 View Projects
               </a>
               <a
-                href="./src/components/media/Priya_resume.pdf"
+                href="media/Priya_resume.pdf"
                 download
                 className="inline-flex items-center px-6 py-3 border-2 border-primary text-primary font-bebas text-xl rounded hover:bg-primary/10 transition-colors group"
               >
@@ -84,7 +84,7 @@ const Hero = () => {
           >
             <div className="aspect-square rounded-full overflow-hidden border-4 border-primary shadow-2xl">
               <img
-                src= './src/components/media/profile.png'
+                src= 'media/profile.png'
                 alt="Profile"
                 className="w-full h-full object-cover"
               />

@@ -46,7 +46,7 @@ const experiences = [
     title: 'Summer Intern - Backend Software Developer',
     company: 'Deloitte Digital, Brisbane, Australia',
     period: 'Aug 2021 – Dec 2021',
-    logo: 'https://drive.google.com/file/d/1tqW0BAmRHp56qBBr_O57EEQhkCvORC8x/view?usp=sharing',
+    logo: 'media/deloitte_logo.png',
     description: 'Developed backend APIs and multi-currency payment features for Travel Money Oz using ASP.NET and C#, enhancing transaction efficiency, accuracy, and user satisfaction.',
     achievements: [
       <p><strong>Engineered Multi-Currency Payment System</strong> – Developed a <strong>multi-currency payment feature</strong> using <strong>ASP.NET and C#</strong>, enabling users to seamlessly add multiple currencies to travel cards, improving transaction efficiency by <strong>25%</strong> and enhancing customer satisfaction.</p>,
@@ -65,7 +65,7 @@ const experiences = [
     title: 'Bachelor of Engineering Honors - Electrical and Computer Engineering',
     company: 'University of Queensland, Brisbane, Australia',
     period: 'Jul 2018 – Jun 2023',
-    logo: './src/components/media/uq_logo.png',
+    logo: 'media/uq_logo.png',
     description: (
       <p>
         <strong>Relevant Courses:</strong> Data structures and Algorithms, Object Oriented Programming, Machine learning, Operating Systems, Computer Architecture and Organization, Web Design and Development.

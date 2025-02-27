@@ -7,7 +7,7 @@ const projects = [
     title: 'Fairness-Aware Facial Recognition Models',
     description: 'Implemented a fairness-aware facial recognition model using the Seldonian framework to reduce racial bias.',
     longDescription: 'Designed a constrained CNN model using PyTorch and scikit-learn, analyzing fairness metrics with the FairFace dataset. Achieved 95% compliance with fairness constraints while maintaining high accuracy and low constraint violation probability, outperforming baseline models like ResNet50 and VGG16.',
-    image: './src/components/media/facial_recog.jpeg',
+    image: 'media/facial_recog.jpeg',
     tags: ['PyTorch', 'Scikit-learn', 'CNN', 'Fairness-Aware AI'],
     github: 'https://github.com/Bpriya42/bias-reduction-facial-recognition',
     features: [
@@ -22,7 +22,7 @@ const projects = [
     title: 'Stock Price Prediction with Parallel Processing',
     description: 'Implemented a stock price prediction model using PySpark MLlib with parallel processing for efficiency optimization.',
     longDescription: 'My primary contribution was building the **machine learning model using PySpark MLlib** and optimizing it for efficiency. Additionally, I **conducted a comparative analysis of model runtime during both training and testing phases**, evaluating performance with and without parallel processing. This analysis provided insights into the computational advantages of distributed processing in large-scale stock price prediction.',
-    image: './src/components/media/stock_price_prediction.jpeg',
+    image: 'media/stock_price_prediction.jpeg',
     tags: ['PySpark', 'SQL', 'MLlib', 'Parallel Computing', 'Big Data'],
     github: 'https://github.com/ajc-617/532finalproject/tree/main',
     features: [
@@ -37,7 +37,7 @@ const projects = [
     title: 'Indoor Air Quality Indicator with Mechanical Plant Avatar',
     description: 'Developed a machine learning-based air quality classifier with real-time IoT data streaming.',
     longDescription: 'Directed firmware development for an indoor air quality monitoring system using environmental sensors and BLE-based real-time IoT data streaming. Built a machine learning classifier achieving 80% accuracy in air quality condition classification.',
-    image: './src/components/media/air_quality.webp',
+    image: 'media/air_quality.webp',
     tags: ['IoT', 'Machine Learning', 'BLE', 'Embedded Systems'],
     github: 'https://github.com/Bpriya42/Vidar-Blue/wiki/1.-Project-Overview',
     features: [
@@ -115,12 +115,12 @@ const Projects = () => {
                         className="text-text hover:text-primary transition-colors"
                       >
                         <img
-                          src="./src/components/media/github-mark.png"
+                          src="media/github-mark.png"
                           alt="GitHub Logo"
                           className="w-6 h-6 block dark:hidden"
                         />
                         <img
-                          src="./src/components/media/github-mark-white.png"
+                          src="media/github-mark-white.png"
                           alt="GitHub Logo"
                           className="w-6 h-6 hidden dark:block"
                         />

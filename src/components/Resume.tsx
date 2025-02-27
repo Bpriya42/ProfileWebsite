@@ -23,7 +23,7 @@ const Resume = () => {
             className="relative w-full max-w-sm mx-auto aspect-[3/4] rounded-lg overflow-hidden shadow-2xl"
           >
             <img
-              src= './src/components/media/resume_preview.png'
+              src= 'media/resume_preview.png'
               alt="Resume Preview"
               className="w-full h-full object-cover"
             />
