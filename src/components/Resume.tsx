@@ -23,11 +23,11 @@ const Resume = () => {
             className="relative w-full max-w-sm mx-auto aspect-[3/4] rounded-lg overflow-hidden shadow-2xl"
           >
             <img
-              src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=400&h=533"
+              src= './src/components/media/resume_preview.png'
               alt="Resume Preview"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            <div className="absolute inset-0" />
             <motion.div
               className="absolute inset-0 border-2 border-primary rounded-lg opacity-20"
               animate={{

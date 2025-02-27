@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Film, ChevronDown } from 'lucide-react';
+import { ExternalLink, Film, ChevronDown } from 'lucide-react';
 
 const projects = [
   {
     title: 'Fairness-Aware Facial Recognition Models',
     description: 'Implemented a fairness-aware facial recognition model using the Seldonian framework to reduce racial bias.',
     longDescription: 'Designed a constrained CNN model using PyTorch and scikit-learn, analyzing fairness metrics with the FairFace dataset. Achieved 95% compliance with fairness constraints while maintaining high accuracy and low constraint violation probability, outperforming baseline models like ResNet50 and VGG16.',
-    image: './src/components/facial_recog.jpeg',
+    image: './src/components/media/facial_recog.jpeg',
     tags: ['PyTorch', 'Scikit-learn', 'CNN', 'Fairness-Aware AI'],
     github: 'https://github.com/Bpriya42/bias-reduction-facial-recognition',
     features: [
@@ -15,13 +15,14 @@ const projects = [
       'Constrained CNN model design',
       'FairFace dataset evaluation',
       'Outperforms ResNet50 and VGG16'
-    ]
+    ],
+    expandable: true
   },
   {
     title: 'Stock Price Prediction with Parallel Processing',
     description: 'Implemented a stock price prediction model using PySpark MLlib with parallel processing for efficiency optimization.',
     longDescription: 'My primary contribution was building the **machine learning model using PySpark MLlib** and optimizing it for efficiency. Additionally, I **conducted a comparative analysis of model runtime during both training and testing phases**, evaluating performance with and without parallel processing. This analysis provided insights into the computational advantages of distributed processing in large-scale stock price prediction.',
-    image: './src/components/stock_prediction.jpg',
+    image: './src/components/media/stock_price_prediction.jpeg',
     tags: ['PySpark', 'SQL', 'MLlib', 'Parallel Computing', 'Big Data'],
     github: 'https://github.com/ajc-617/532finalproject/tree/main',
     features: [
@@ -29,13 +30,14 @@ const projects = [
       'Parallel data processing across multiple cores',
       'Stock price prediction using PySpark MLlib',
       'Runtime performance analysis for parallel vs sequential processing'
-    ]
+    ],
+    expandable: true
   },
   {
     title: 'Indoor Air Quality Indicator with Mechanical Plant Avatar',
     description: 'Developed a machine learning-based air quality classifier with real-time IoT data streaming.',
     longDescription: 'Directed firmware development for an indoor air quality monitoring system using environmental sensors and BLE-based real-time IoT data streaming. Built a machine learning classifier achieving 80% accuracy in air quality condition classification.',
-    image: './src/components/air_quality.webp',
+    image: './src/components/media/air_quality.webp',
     tags: ['IoT', 'Machine Learning', 'BLE', 'Embedded Systems'],
     github: 'https://github.com/Bpriya42/Vidar-Blue/wiki/1.-Project-Overview',
     features: [
@@ -43,7 +45,8 @@ const projects = [
       'BLE-based IoT data streaming',
       'ML-based air quality classification',
       '80% classification accuracy'
-    ]
+    ],
+    expandable: true
   }
 ];
 
@@ -109,27 +112,37 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-text hover:text-primary transition-colors"
+                        className="text-text hover:text-primary transition-colors"
                       >
-                        <Github size={20} />
-                        <span>Code</span>
+                        <img
+                          src="./src/components/media/github-mark.png"
+                          alt="GitHub Logo"
+                          className="w-6 h-6 block dark:hidden"
+                        />
+                        <img
+                          src="./src/components/media/github-mark-white.png"
+                          alt="GitHub Logo"
+                          className="w-6 h-6 hidden dark:block"
+                        />
                       </a>
-                      <button
-                        onClick={() => setExpandedId(isExpanded ? null : index)}
-                        className="ml-auto flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <span>{isExpanded ? 'Less' : 'More'}</span>
-                        <motion.div
-                          animate={{ rotate: isExpanded ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
+
+                      {project.expandable && (
+                        <button
+                          onClick={() => setExpandedId(isExpanded ? null : index)}
+                          className="ml-auto text-primary hover:text-primary/80 transition-colors"
                         >
-                          <ChevronDown size={20} />
-                        </motion.div>
-                      </button>
+                          <motion.div
+                            animate={{ rotate: isExpanded ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown size={24} />
+                          </motion.div>
+                        </button>
+                      )}
                     </div>
 
                     <AnimatePresence>
-                      {isExpanded && (
+                      {isExpanded && project.expandable && (
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
@@ -152,19 +165,6 @@ const Projects = () => {
                     </AnimatePresence>
                   </div>
                 </div>
-
-                <motion.div
-                  className="absolute inset-0 border-2 border-primary/20 rounded-lg opacity-0 group-hover:opacity-20"
-                  animate={{
-                    scale: [1, 1.02, 1],
-                    rotate: [0, 1, 0]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
               </motion.div>
             );
           })}

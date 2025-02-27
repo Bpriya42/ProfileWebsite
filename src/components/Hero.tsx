@@ -17,8 +17,8 @@ const Hero = () => {
   };
 
   const bioLines = [
-    "Master of Science in Computer Science,",
-    "University of Massachusetts Amherst",
+    "Master of Science in Computer Science",
+    "University of Massachusetts Amherst,",
     "Machine Learning & AI Specialization,",
     "Full-Stack Software Developer."
   ];
@@ -66,7 +66,7 @@ const Hero = () => {
                 View Projects
               </a>
               <a
-                href="/resume.pdf"
+                href="./src/components/media/Priya_resume.pdf"
                 download
                 className="inline-flex items-center px-6 py-3 border-2 border-primary text-primary font-bebas text-xl rounded hover:bg-primary/10 transition-colors group"
               >
@@ -84,7 +84,7 @@ const Hero = () => {
           >
             <div className="aspect-square rounded-full overflow-hidden border-4 border-primary shadow-2xl">
               <img
-                src="https://media.licdn.com/media/AAYQAQSOAAgAAQAAAAAAAB-zrMZEDXI2T62PSuT6kpB6qg.png"
+                src= './src/components/media/profile.png'
                 alt="Profile"
                 className="w-full h-full object-cover"
               />

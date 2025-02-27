@@ -5,10 +5,24 @@ import { Calendar, Building2, ArrowRight, ChevronDown } from 'lucide-react';
 
 const experiences = [
   {
+    title: 'Master of Science - Computer Science',
+    company: 'University of Massachusetts, Amherst, MA',
+    period: 'Aug 2024 - May 2026',
+    logo: './src/components/media/umass_logo.png',
+    description: (
+      <p>
+        <strong>Relevant Courses:</strong> Statistics, Neural Networks, Systems for Data Science, Natural Language Processing, Computer Vision, Software Engineering, Optimization in Machine Learning.
+        </p> 
+    ),
+    achievements: "",
+    details: "",
+    expandable: false
+  },
+  {
     title: 'Graduate Full-stack Software Developer',
-    company: 'Deloitte Digital',
+    company: 'Deloitte Digital, Brisbane, Australia',
     period: 'Jul 2023 - May 2024',
-    logo: './src/components/deloitte_logo.png',
+    logo: './src/components/media/deloitte_logo.png',
     description: "Designed and implemented secure authentication systems, data migration solutions, and employee dashboards using Auth0, ASP.NET, and React.js, enhancing security, efficiency, and user experience for Australia's largest foreign exchange provider.",
     achievements: [
       <p><strong>Enhanced Security & User Authentication</strong> – Integrated <strong>Auth0 identity management</strong> and <strong>Multi-Factor Authentication (MFA)</strong>, securing access for <strong>100,000+ users</strong> and reducing authentication-related support issues by <strong>~70%</strong>.</p>,
@@ -25,13 +39,14 @@ const experiences = [
         Multi-Factor Authentication (MFA), C# Encryption & Decryption, SQL Server, 
         ASP.NET, React.js, TypeScript, RESTful APIs, Data Migration, User Authentication.
       </p>
-    )
+    ),
+    expandable: true
   },
   {
     title: 'Summer Intern - Backend Software Developer',
-    company: 'Deloitte Digital',
+    company: 'Deloitte Digital, Brisbane, Australia',
     period: 'Aug 2021 – Dec 2021',
-    logo: './src/components/deloitte_logo.png',
+    logo: './src/components/media/deloitte_logo.png',
     description: 'Developed backend APIs and multi-currency payment features for Travel Money Oz using ASP.NET and C#, enhancing transaction efficiency, accuracy, and user satisfaction.',
     achievements: [
       <p><strong>Engineered Multi-Currency Payment System</strong> – Developed a <strong>multi-currency payment feature</strong> using <strong>ASP.NET and C#</strong>, enabling users to seamlessly add multiple currencies to travel cards, improving transaction efficiency by <strong>25%</strong> and enhancing customer satisfaction.</p>,
@@ -43,7 +58,22 @@ const experiences = [
         <strong>Skills:</strong> Backend Development, ASP.NET, C#, Multi-Currency Transactions, 
         Payment Processing, API Development, Real-Time Data Processing, System Scalability.
       </p>
-    )
+    ),
+    expandable: true
+  },
+  {
+    title: 'Bachelor of Engineering Honors - Electrical and Computer Engineering',
+    company: 'University of Queensland, Brisbane, Australia',
+    period: 'Jul 2018 – Jun 2023',
+    logo: './src/components/media/uq_logo.png',
+    description: (
+      <p>
+        <strong>Relevant Courses:</strong> Data structures and Algorithms, Object Oriented Programming, Machine learning, Operating Systems, Computer Architecture and Organization, Web Design and Development.
+        </p> 
+    ),
+    achievements: "",
+    details: "",
+    expandable: false
   }
 ];
 
@@ -80,7 +110,7 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Experience
+          Education & Experience
         </motion.h2>
         
         <motion.div
@@ -111,7 +141,11 @@ const Experience = () => {
                 <motion.div 
                   className="ml-12 md:ml-8 bg-background/50 backdrop-blur-sm p-6 rounded-lg border border-primary/20 shadow-xl cursor-pointer"
                   whileHover={{ scale: 1.02 }}
-                  onClick={() => setExpandedId(isExpanded ? null : index)}
+                  onClick={() => {
+                    if (exp.expandable) {
+                      setExpandedId(isExpanded ? null : index);
+                    }
+                  }}
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
@@ -127,12 +161,14 @@ const Experience = () => {
                         <span>{exp.period}</span>
                       </div>
                     </div>
-                    <motion.button
-                      className="ml-auto"
-                      animate={{ rotate: isExpanded ? 180 : 0 }}
-                    >
-                      <ChevronDown size={24} className="text-primary" />
-                    </motion.button>
+                    {exp.expandable && (
+                        <motion.button
+                        className="ml-auto"
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        >
+                        <ChevronDown size={24} className="text-primary" />
+                        </motion.button>
+                    )}
                   </div>
                   
                   <p className="mb-4 text-text/80">{exp.description}</p>

@@ -14,7 +14,7 @@ const Navbar = () => {
     }
   }, [isDark]);
 
-  const menuItems = ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
+  const menuItems = ['Education & Experience', 'Skills', 'Projects', 'Contact'];
 
   return (
     <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-sm border-b border-primary/20">
