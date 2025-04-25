@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, FileText, Eye } from 'lucide-react';
+import { Download, FileText } from 'lucide-react';
 
 const Resume = () => {
   return (
@@ -46,9 +46,9 @@ const Resume = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 mx-auto text-center md:text-left md:mx-0 max-w-md"
           >
-            <div className="prose prose-lg">
+            <div className="prose prose-lg mx-auto md:mx-0">
               <h3 className="font-bebas text-3xl mb-4">Download Options</h3>
               <p className="text-text/80">
                 Choose your preferred format to view or download my complete resume, including detailed work history, skills, and achievements.
@@ -57,14 +57,14 @@ const Resume = () => {
 
             <div className="space-y-4">
               <a
-                href="src/components/Priya resume (8).pdf"
+                href="media/Priya_resume_final.pdf"
                 download
                 className="group flex items-center gap-4 p-4 card-bg backdrop-blur-sm rounded-lg border card-border hover:border-primary transition-all"
               >
                 <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
                   <FileText size={24} className="text-primary" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 text-left">
                   <h4 className="font-bebas text-xl">Download PDF</h4>
                   <p className="text-sm text-text/80">High-quality print-ready version</p>
                 </div>

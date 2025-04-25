@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { Calendar, Building2, ArrowRight, ChevronDown } from 'lucide-react';
 
 const experiences = [
@@ -118,28 +117,26 @@ const Experience = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="space-y-12"
+          className="space-y-12 relative"
         >
+          <div className="absolute top-0 bottom-0 w-1 bg-primary/20 left-4 md:left-1/2 mx-auto"></div>
+          
           {experiences.map((exp, index) => {
-            const [ref, inView] = useInView({
-              triggerOnce: true,
-              threshold: 0.2
-            });
-
             const isExpanded = expandedId === index;
 
             return (
               <motion.div
                 key={index}
-                ref={ref}
                 variants={itemVariants}
-                className={`relative ${index % 2 === 0 ? 'ml-0 md:ml-[50%]' : 'mr-0 md:mr-[50%]'}`}
+                className="relative flex flex-col md:flex-row md:justify-center"
+                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
               >
-                <div className="absolute top-0 bottom-0 w-px bg-primary/20 left-4 md:left-1/2" />
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary" />
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary z-10"></div>
                 
                 <motion.div 
-                  className="ml-12 md:ml-8 bg-background/50 backdrop-blur-sm p-6 rounded-lg border border-primary/20 shadow-xl cursor-pointer"
+                  className="ml-12 md:ml-0 md:w-5/12 md:mr-8 bg-background/50 backdrop-blur-sm p-6 rounded-lg border border-primary/20 shadow-xl cursor-pointer"
                   whileHover={{ scale: 1.02 }}
                   onClick={() => {
                     if (exp.expandable) {
@@ -148,22 +145,22 @@ const Experience = () => {
                   }}
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary flex-shrink-0">
                       <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover" />
                     </div>
-                    <div>
-                      <h3 className="font-bebas text-3xl text-primary">{exp.title}</h3>
-                      <div className="flex items-center gap-2 text-sm">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bebas text-2xl md:text-3xl text-primary">{exp.title}</h3>
+                      <div className="flex flex-wrap items-center gap-2 text-sm">
                         <Building2 size={16} className="text-primary" />
-                        <span className="font-semibold">{exp.company}</span>
-                        <span className="mx-2">•</span>
+                        <span className="font-semibold truncate">{exp.company}</span>
+                        <span className="mx-1">•</span>
                         <Calendar size={16} className="text-primary" />
                         <span>{exp.period}</span>
                       </div>
                     </div>
                     {exp.expandable && (
                         <motion.button
-                        className="ml-auto"
+                        className="ml-auto flex-shrink-0"
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         >
                         <ChevronDown size={24} className="text-primary" />
@@ -183,15 +180,19 @@ const Experience = () => {
                       >
                         <div className="pt-4 border-t border-primary/20">
                           <p className="mb-4 text-text/80">{exp.details}</p>
-                          <h4 className="font-bebas text-xl mb-2">Key Achievements</h4>
-                          <ul className="space-y-2">
-                            {exp.achievements.map((achievement, i) => (
-                              <li key={i} className="flex items-center gap-2">
-                                <ArrowRight size={16} className="text-primary flex-shrink-0" />
-                                <span>{achievement}</span>
-                              </li>
-                            ))}
-                          </ul>
+                          {Array.isArray(exp.achievements) && exp.achievements.length > 0 && (
+                            <>
+                              <h4 className="font-bebas text-xl mb-2">Key Achievements</h4>
+                              <ul className="space-y-2">
+                                {exp.achievements.map((achievement: React.ReactNode, i: number) => (
+                                  <li key={i} className="flex items-start gap-2">
+                                    <ArrowRight size={16} className="text-primary flex-shrink-0 mt-1" />
+                                    <span>{achievement}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          )}
                         </div>
                       </motion.div>
                     )}

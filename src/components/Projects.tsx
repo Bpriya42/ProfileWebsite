@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Film, ChevronDown } from 'lucide-react';
+import { Film, ChevronDown } from 'lucide-react';
 
 const projects = [
+  {
+    title: 'AutoCareers',
+    description: 'Built a scalable AI-powered job search platform that automates resume parsing, ATS scoring, and cover letter generation. Improved job search efficiency by 25% with LLM integration, intelligent filtering, and recruiter-user messaging.',
+    longDescription: 'AutoCareers is a full-stack AI job search platform designed to reduce job-hunting friction for candidates and streamline hiring for recruiters. Developed with React (TypeScript), FastAPI, MongoDB, and AWS, it incorporates LLM agents for cover letter generation, accurate resume parsing, and job recommendations. It also features recruiter dashboards, user-role segregation, ATS scoring, intelligent filtering, and direct messaging. DevOps pipelines and robust backend APIs ensure production-grade reliability and scalability.y primary contribution was building the **machine learning model using PySpark MLlib** and optimizing it for efficiency. Additionally, I **conducted a comparative analysis of model runtime during both training and testing phases**, evaluating performance with and without parallel processing. This analysis provided insights into the computational advantages of distributed processing in large-scale stock price prediction.',
+    image: 'media/autocareers.png',
+    tags: ['React (TypeScript)', 'FastAPI', 'MongoDB', 'AWS', 'OpenAI / Together AI', 'GitHub Actions (CI/CD)', 'Pytest / Jest', 'Tailwind & Material UI'],
+    github: 'https://github.com/ajc-617/532finalproject/tree/main',
+    features: [
+      'LLM-powered cover letter generation',
+      'ATS-based resume parsing with 95% accuracy',
+      'Intelligent job filtering & recommendation',
+      'Scalable recruiter and applicant portals',
+      'Full CI/CD with Postman-tested APIs and production-grade deployment'
+    ],
+    expandable: true
+  },
   {
     title: 'Fairness-Aware Facial Recognition Models',
     description: 'Implemented a fairness-aware facial recognition model using the Seldonian framework to reduce racial bias.',
@@ -91,10 +107,10 @@ const Projects = () => {
 
                   <div className="p-6">
                     <h3 className="font-bebas text-2xl mb-2 flex items-center gap-2">
-                      <Film className="text-primary" />
-                      {project.title}
+                      <Film className="text-primary flex-shrink-0" />
+                      <span className="text-left">{project.title}</span>
                     </h3>
-                    <p className="text-text/80 mb-4">{isExpanded ? project.longDescription : project.description}</p>
+                    <p className="text-text/80 mb-4 text-left">{isExpanded ? project.longDescription : project.description}</p>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map((tag) => (
@@ -150,12 +166,12 @@ const Projects = () => {
                           className="overflow-hidden"
                         >
                           <div className="pt-4 border-t border-primary/20">
-                            <h4 className="font-bebas text-xl mb-2">Key Features</h4>
+                            <h4 className="font-bebas text-xl mb-2 text-left">Key Features</h4>
                             <ul className="space-y-2">
                               {project.features.map((feature, i) => (
-                                <li key={i} className="flex items-center gap-2">
-                                  <Film size={16} className="text-primary" />
-                                  <span>{feature}</span>
+                                <li key={i} className="flex items-start gap-2">
+                                  <Film size={16} className="text-primary flex-shrink-0 mt-1" />
+                                  <span className="text-left">{feature}</span>
                                 </li>
                               ))}
                             </ul>

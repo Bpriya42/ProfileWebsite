@@ -14,7 +14,12 @@ const Navbar = () => {
     }
   }, [isDark]);
 
-  const menuItems = ['Education & Experience', 'Skills', 'Projects', 'Contact'];
+  const menuItems = [
+    { label: 'Education & Experience', href: 'experience' },
+    { label: 'Skills', href: 'skills' },
+    { label: 'Projects', href: 'projects' },
+    { label: 'Contact', href: 'contact' }
+  ];
 
   return (
     <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-sm border-b border-primary/20">
@@ -29,11 +34,11 @@ const Navbar = () => {
             <div className="ml-10 flex items-center space-x-8">
               {menuItems.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.label}
+                  href={`#${item.href}`}
                   className="font-bebas text-xl hover:text-primary transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
               <button
@@ -75,12 +80,12 @@ const Navbar = () => {
             <div className="px-2 pt-2 pb-3 space-y-1">
               {menuItems.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.label}
+                  href={`#${item.href}`}
                   className="block px-3 py-2 font-bebas text-xl hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </div>

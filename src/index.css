@@ -27,6 +27,13 @@
 
 body {
   @apply bg-background text-text font-lora transition-colors duration-300;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+section > div {
+  @apply mx-auto;
 }
 
 .dark .card-border {
@@ -57,7 +64,7 @@ body {
 }
 
 .section-title {
-  @apply font-bebas text-4xl md:text-5xl mb-12 text-primary;
+  @apply font-bebas text-4xl md:text-5xl mb-12 text-primary text-center;
 }
 
 /* Smooth scroll animation classes */
@@ -84,3 +91,67 @@ body {
 .stagger-children.active > *:nth-child(3) { transition-delay: 0.3s; }
 .stagger-children.active > *:nth-child(4) { transition-delay: 0.4s; }
 .stagger-children.active > *:nth-child(5) { transition-delay: 0.5s; }
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 640px) {
+  /* Adjust font sizes for better readability */
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem) !important;
+  }
+  
+  h2 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  }
+  
+  /* Add proper padding for mobile */
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+  }
+  
+  /* Improve spacing between elements */
+  .grid {
+    gap: 2rem !important;
+  }
+
+  /* Fix for Experience timeline */
+  .ml-12.md\:ml-8 {
+    margin-left: 1.5rem !important;
+    margin-right: 0.5rem !important;
+    width: auto !important;
+  }
+  
+  /* Ensure buttons are easier to tap */
+  button, a.inline-flex {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Center and fix skills buttons overflow */
+  section#skills .flex.justify-center.gap-4 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  section#skills .flex.justify-center.gap-4 button {
+    margin: 0.25rem;
+    font-size: 0.875rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  /* Fix content alignment */
+  p, span, h3, h4 {
+    text-align: left;
+  }
+  
+  .section-title {
+    text-align: center !important;
+  }
+}

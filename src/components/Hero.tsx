@@ -19,7 +19,7 @@ const Hero = () => {
   const bioLines = [
     "Master of Science in Computer Science",
     "University of Massachusetts Amherst,",
-    "Machine Learning & AI Specialization,",
+    "Machine Learning & AI Student,",
     "Full-Stack Software Developer."
   ];
 
@@ -66,7 +66,7 @@ const Hero = () => {
                 View Projects
               </a>
               <a
-                href="media/Priya_resume.pdf"
+                href="media/Priya_resume_final.pdf"
                 download
                 className="inline-flex items-center px-6 py-3 border-2 border-primary text-primary font-bebas text-xl rounded hover:bg-primary/10 transition-colors group"
               >

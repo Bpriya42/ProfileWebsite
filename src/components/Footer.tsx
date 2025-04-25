@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -8,7 +7,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-20 relative">
+    <footer id="contact" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div>
@@ -59,10 +58,10 @@ const Footer = () => {
                 <a href="#experience" className="hover:text-primary transition-colors">Education & Experience</a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
+                <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
               </li>
               <li>
-                <a href="#publications" className="hover:text-primary transition-colors">Publications</a>
+                <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
               </li>
               <li>
                 <a href="#resume" className="hover:text-primary transition-colors">Resume</a>

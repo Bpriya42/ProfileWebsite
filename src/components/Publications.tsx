@@ -37,32 +37,32 @@ const Publications = () => {
               transition={{ delay: index * 0.2 }}
               className="bg-background/50 backdrop-blur-sm p-6 rounded-lg border border-primary/20 shadow-xl hover:shadow-2xl transition-all"
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
+              <div className="flex flex-col sm:flex-row items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10 mb-2 sm:mb-0">
                   <BookOpen size={24} className="text-primary" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                   <h3 className="font-bebas text-2xl mb-2">{pub.title}</h3>
                   <div className="flex flex-wrap gap-4 text-sm mb-4">
                     <div className="flex items-center gap-2">
-                      <Users size={16} className="text-primary" />
+                      <Users size={16} className="text-primary flex-shrink-0" />
                       <span>{pub.authors.join(', ')}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Calendar size={16} className="text-primary" />
+                      <Calendar size={16} className="text-primary flex-shrink-0" />
                       <span>{pub.date}</span>
                     </div>
                   </div>
                   <p className="text-text/80 mb-4">{pub.abstract}</p>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
                     <span className="font-medium">{pub.journal}</span>
                     <a
                       href={pub.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                      className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors break-all"
                     >
-                      <Link size={16} />
+                      <Link size={16} className="flex-shrink-0" />
                       <span>DOI: {pub.doi}</span>
                     </a>
                   </div>

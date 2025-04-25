@@ -2,8 +2,22 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Globe, Database, Palette, Cog, GitBranch, Film, Monitor } from 'lucide-react';
 
-const categories = ['All', 'Programming Languages', 'Machine Learning & AI', 'Backend Development', 'Frontend Development', 'Cloud & DevOps', 'Data & Database Management', 'IoT & Embedded Systems', 'Tools & Platforms'] as const;
-type Category = typeof categories[number];
+// Use shorter category names for mobile display
+const categories = ['All', 'Languages', 'ML & AI', 'Backend', 'Frontend', 'Cloud', 'Data', 'IoT', 'Tools'] as const;
+type Category = 'All' | 'Programming Languages' | 'Machine Learning & AI' | 'Backend Development' | 'Frontend Development' | 'Cloud & DevOps' | 'Data & Database Management' | 'IoT & Embedded Systems' | 'Tools & Platforms';
+
+// Map short names to full category names
+const categoryMap: Record<typeof categories[number], Category> = {
+  'All': 'All',
+  'Languages': 'Programming Languages',
+  'ML & AI': 'Machine Learning & AI',
+  'Backend': 'Backend Development',
+  'Frontend': 'Frontend Development',
+  'Cloud': 'Cloud & DevOps',
+  'Data': 'Data & Database Management',
+  'IoT': 'IoT & Embedded Systems',
+  'Tools': 'Tools & Platforms'
+};
 
 const skillCategories = [
   {
@@ -108,28 +122,31 @@ const Skills = () => {
           Technical Skills
         </motion.h2>
 
-        <div className="flex justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full font-bebas text-lg transition-all ${
-                selectedCategory === category
-                  ? 'bg-primary text-background'
-                  : 'bg-primary/10 text-primary hover:bg-primary/20'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
+          {categories.map((shortCategory) => {
+            const fullCategory = categoryMap[shortCategory];
+            return (
+              <button
+                key={shortCategory}
+                onClick={() => setSelectedCategory(fullCategory)}
+                className={`px-3 py-2 rounded-full font-bebas text-sm sm:text-lg whitespace-nowrap transition-all ${
+                  selectedCategory === fullCategory
+                    ? 'bg-primary text-background'
+                    : 'bg-primary/10 text-primary hover:bg-primary/20'
+                }`}
+              >
+                {shortCategory}
+              </button>
+            );
+          })}
         </div>
 
         <motion.div 
           layout
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
-            {filteredCategories.map((category, index) => {
+            {filteredCategories.map((category) => {
               const Icon = category.icon;
               
               return (
