@@ -9,7 +9,7 @@ const projects = [
     longDescription: 'AutoCareers is a full-stack AI job search platform designed to reduce job-hunting friction for candidates and streamline hiring for recruiters. Developed with React (TypeScript), FastAPI, MongoDB, and AWS, it incorporates LLM agents for cover letter generation, accurate resume parsing, and job recommendations. It also features recruiter dashboards, user-role segregation, ATS scoring, intelligent filtering, and direct messaging. DevOps pipelines and robust backend APIs ensure production-grade reliability and scalability.y primary contribution was building the **machine learning model using PySpark MLlib** and optimizing it for efficiency. Additionally, I **conducted a comparative analysis of model runtime during both training and testing phases**, evaluating performance with and without parallel processing. This analysis provided insights into the computational advantages of distributed processing in large-scale stock price prediction.',
     image: 'media/autocareers.png',
     tags: ['React (TypeScript)', 'FastAPI', 'MongoDB', 'AWS', 'OpenAI / Together AI', 'GitHub Actions (CI/CD)', 'Pytest / Jest', 'Tailwind & Material UI'],
-    github: 'https://github.com/ajc-617/532finalproject/tree/main',
+    github: 'https://github.com/RuchiGupta20/AutoCareers',
     features: [
       'LLM-powered cover letter generation',
       'ATS-based resume parsing with 95% accuracy',
