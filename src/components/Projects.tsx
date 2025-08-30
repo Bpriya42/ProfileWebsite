@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Film, ChevronDown } from 'lucide-react';
+import { Film, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  tags: string[];
+  github: string;
+  features: string[];
+  expandable: boolean;
+  originalIndex?: number;
+}
+
+const projects: Project[] = [
   {
     title: 'AutoCareers',
     description: 'Built a scalable AI-powered job search platform that automates resume parsing, ATS scoring, and cover letter generation. Improved job search efficiency by 25% with LLM integration, intelligent filtering, and recruiter-user messaging.',
@@ -67,7 +79,36 @@ const projects = [
 ];
 
 const Projects = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [expandedId, setExpandedId] = useState<number | null>(null);
+
+  const nextProject = () => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+    setExpandedId(null); // Close expanded card when navigating
+  };
+
+  const prevProject = () => {
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    setExpandedId(null); // Close expanded card when navigating
+  };
+
+  const goToProject = (index: number) => {
+    setCurrentIndex(index);
+    setExpandedId(null);
+  };
+
+  const getVisibleProjects = () => {
+    const visibleCount = 3; // Show 3 projects at once on desktop, 1 on mobile
+    const projects_copy = [...projects];
+    const result = [];
+    
+    for (let i = 0; i < visibleCount; i++) {
+      const index = (currentIndex + i) % projects.length;
+      result.push({ ...projects_copy[index], originalIndex: index });
+    }
+    
+    return result;
+  };
 
   return (
     <section id="projects" className="py-20 relative">
@@ -81,112 +122,209 @@ const Projects = () => {
           Featured Projects
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
-            const isExpanded = expandedId === index;
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevProject}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors backdrop-blur-sm border border-primary/20"
+            aria-label="Previous project"
+          >
+            <ChevronLeft size={24} className="text-primary" />
+          </button>
 
-            return (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className={`group relative card-bg rounded-lg border card-border shadow-xl overflow-hidden ${
-                  isExpanded ? 'md:col-span-2 lg:col-span-3 transition-all duration-500' : ''
+          <button
+            onClick={nextProject}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors backdrop-blur-sm border border-primary/20"
+            aria-label="Next project"
+          >
+            <ChevronRight size={24} className="text-primary" />
+          </button>
+
+          {/* Carousel Content */}
+          <div className="overflow-hidden mx-12">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ 
+                x: expandedId !== null ? 0 : 0 // Keep position when expanded
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              {/* Desktop View - Show 3 cards */}
+              <div className="hidden md:flex gap-6 w-full">
+                {getVisibleProjects().map((project, index) => {
+                  const isExpanded = expandedId === project.originalIndex;
+                  
+                  return (
+                    <motion.div
+                      key={`${project.originalIndex}-${currentIndex}`}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                                             className={`group relative bg-background/50 backdrop-blur-sm rounded-lg border border-primary/20 shadow-xl overflow-hidden transition-all duration-500 ${
+                         isExpanded ? 'w-full' : 'flex-1'
+                       } ${!isExpanded ? 'h-[600px]' : ''}`}
+                    >
+                      <ProjectCard 
+                        project={project}
+                        index={project.originalIndex}
+                        isExpanded={isExpanded}
+                        onToggleExpand={setExpandedId}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Mobile View - Show 1 card */}
+              <div className="md:hidden w-full">
+                {(() => {
+                  const project = { ...projects[currentIndex], originalIndex: currentIndex };
+                  const isExpanded = expandedId === currentIndex;
+                  
+                  return (
+                                         <motion.div
+                       key={`mobile-${currentIndex}`}
+                       initial={{ opacity: 0, x: 50 }}
+                       animate={{ opacity: 1, x: 0 }}
+                       className={`group relative bg-background/50 backdrop-blur-sm rounded-lg border border-primary/20 shadow-xl overflow-hidden ${
+                         !isExpanded ? 'h-[600px]' : ''
+                       }`}
+                     >
+                      <ProjectCard 
+                        project={project}
+                        index={currentIndex}
+                        isExpanded={isExpanded}
+                        onToggleExpand={setExpandedId}
+                      />
+                    </motion.div>
+                  );
+                })()}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="flex justify-center mt-8 gap-2">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToProject(index)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === currentIndex 
+                    ? 'bg-primary' 
+                    : 'bg-primary/30 hover:bg-primary/50'
                 }`}
-              >
-                <div className={`${isExpanded ? 'md:grid md:grid-cols-2 gap-6' : ''}`}>
-                  <div className={`aspect-video overflow-hidden ${isExpanded ? 'md:aspect-auto md:h-full' : ''}`}>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-
-                  <div className="p-6">
-                    <h3 className="font-bebas text-2xl mb-2 flex items-center gap-2">
-                      <Film className="text-primary flex-shrink-0" />
-                      <span className="text-left">{project.title}</span>
-                    </h3>
-                    <p className="text-text/80 mb-4 text-left">{isExpanded ? project.longDescription : project.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 text-sm bg-primary/10 text-primary rounded"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center gap-4 mb-4">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-text hover:text-primary transition-colors"
-                      >
-                        <img
-                          src="media/github-mark.png"
-                          alt="GitHub Logo"
-                          className="w-6 h-6 block dark:hidden"
-                        />
-                        <img
-                          src="media/github-mark-white.png"
-                          alt="GitHub Logo"
-                          className="w-6 h-6 hidden dark:block"
-                        />
-                      </a>
-
-                      {project.expandable && (
-                        <button
-                          onClick={() => setExpandedId(isExpanded ? null : index)}
-                          className="ml-auto text-primary hover:text-primary/80 transition-colors"
-                        >
-                          <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <ChevronDown size={24} />
-                          </motion.div>
-                        </button>
-                      )}
-                    </div>
-
-                    <AnimatePresence>
-                      {isExpanded && project.expandable && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pt-4 border-t border-primary/20">
-                            <h4 className="font-bebas text-xl mb-2 text-left">Key Features</h4>
-                            <ul className="space-y-2">
-                              {project.features.map((feature, i) => (
-                                <li key={i} className="flex items-start gap-2">
-                                  <Film size={16} className="text-primary flex-shrink-0 mt-1" />
-                                  <span className="text-left">{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+                aria-label={`Go to project ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
+  );
+};
+
+// Separate ProjectCard component for reusability
+const ProjectCard = ({ 
+  project, 
+  index, 
+  isExpanded, 
+  onToggleExpand 
+}: { 
+  project: Project; 
+  index: number; 
+  isExpanded: boolean; 
+  onToggleExpand: (id: number | null) => void;
+}) => {
+  return (
+    <div className={`${isExpanded ? 'md:grid md:grid-cols-2 gap-6 h-auto' : 'flex flex-col h-full'}`}>
+      <div className={`${isExpanded ? 'md:aspect-auto md:h-full' : 'aspect-video'} overflow-hidden ${!isExpanded ? 'flex-shrink-0' : ''}`}>
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+      </div>
+
+      <div className={`p-6 ${!isExpanded ? 'flex-1 flex flex-col' : ''}`}>
+        <h3 className="font-bebas text-2xl mb-2 flex items-center gap-2">
+          <Film className="text-primary flex-shrink-0" />
+          <span className="text-left">{project.title}</span>
+        </h3>
+        <p className={`text-text/80 mb-4 text-left ${!isExpanded ? 'flex-1' : ''}`}>
+          {isExpanded ? project.longDescription : project.description}
+        </p>
+        
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag: string) => (
+            <span
+              key={tag}
+              className="px-2 py-1 text-sm bg-primary/10 text-primary rounded"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className={`flex items-center gap-4 mb-4 ${!isExpanded ? 'mt-auto' : ''}`}>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text hover:text-primary transition-colors"
+          >
+            <img
+              src="media/github-mark.png"
+              alt="GitHub Logo"
+              className="w-6 h-6 block dark:hidden"
+            />
+            <img
+              src="media/github-mark-white.png"
+              alt="GitHub Logo"
+              className="w-6 h-6 hidden dark:block"
+            />
+          </a>
+
+          {project.expandable && (
+            <button
+              onClick={() => onToggleExpand(isExpanded ? null : index)}
+              className="ml-auto text-primary hover:text-primary/80 transition-colors"
+            >
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown size={24} />
+              </motion.div>
+            </button>
+          )}
+        </div>
+
+        <AnimatePresence>
+          {isExpanded && project.expandable && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="pt-4 border-t border-primary/20">
+                <h4 className="font-bebas text-xl mb-2 text-left">Key Features</h4>
+                <ul className="space-y-2">
+                  {project.features.map((feature: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <Film size={16} className="text-primary flex-shrink-0 mt-1" />
+                      <span className="text-left">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
   );
 };
 

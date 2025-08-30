@@ -15,6 +15,7 @@ const Navbar = () => {
   }, [isDark]);
 
   const menuItems = [
+    { label: 'About', href: 'about' },
     { label: 'Education & Experience', href: 'experience' },
     { label: 'Skills', href: 'skills' },
     { label: 'Projects', href: 'projects' },
